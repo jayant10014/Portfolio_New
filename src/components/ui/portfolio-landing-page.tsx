@@ -87,11 +87,11 @@ const AuroraBackground: React.FC = () => {
                         vec2 v=p+sway+cos(i*i+(iTime+p.x*.05)*.12+i*vec2(13.,11.))*7.0;
                         float tailNoise=fbm(v+vec2(iTime*.5,i))*.3*(1.-(i/45.));
                         vec4 auroraColors=vec4(.1+.3*sin(i*.2+iTime*.4),.3+.5*cos(i*.3+iTime*.5),.7+.3*sin(i*.4+iTime*.3),1.);
-                        vec4 currentContribution=auroraColors*exp(sin(i*i+iTime*.8))/(length(v * vec2(f * 0.022, 1.3)) + 0.001);
+                        vec4 currentContribution=auroraColors*exp(sin(i*i+iTime*.8))/(length(v * vec2(f * 0.022, 0.6)) + 0.001);
                         float thinnessFactor=smoothstep(0.,1.,i/45.)*.6;
                         o+=currentContribution*(1.+tailNoise*.8)*thinnessFactor;
                     }
-                    o=tanh(pow(o/100.,vec4(1.6)));gl_FragColor=o*1.4;
+                    o=tanh(pow(o/100.,vec4(1.6)));gl_FragColor=o*1.2;
                 }`
         });
         const geometry = new THREE.PlaneGeometry(2, 2);
