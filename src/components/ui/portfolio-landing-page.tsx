@@ -82,9 +82,9 @@ const AuroraBackground: React.FC = () => {
                 float fbm(vec2 x) { float v=0.0;float a=0.3;vec2 shift=vec2(100);mat2 rot=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.50));for(int i=0;i<NUM_OCTAVES;++i){v+=a*noise(x);x=rot*x*2.0+shift;a*=0.4;}return v;}
                 void main() {
                     vec2 p=((gl_FragCoord.xy)-iResolution.xy*0.5)/iResolution.y*mat2(5.0,-3.0,3.0,5.0);vec4 o=vec4(0.);float f=2.+fbm(p+vec2(iTime*4.,0.))*.5;
-                    vec2 sway = vec2(sin(iTime * 0.08) * 2.2, cos(iTime * 0.04) * 0.7);
+                    vec2 sway = vec2(sin(iTime * 0.12) * 2.8, cos(iTime * 0.08) * 0.9);
                     for(float i=0.;i++<45.;){
-                        vec2 v=p+sway+cos(i*i+(iTime+p.x*.08)*.025+i*vec2(13.,11.))*5.5;
+                        vec2 v=p+sway+cos(i*i+(iTime+p.x*.05)*.10+i*vec2(13.,11.))*8.5;
                         float tailNoise=fbm(v+vec2(iTime*.5,i))*.3*(1.-(i/45.));
                         vec4 auroraColors=vec4(.1+.3*sin(i*.2+iTime*.4),.3+.5*cos(i*.3+iTime*.5),.7+.3*sin(i*.4+iTime*.3),1.);
                         vec4 currentContribution=auroraColors*exp(sin(i*i+iTime*.8))/length(max(v,vec2(v.x*f*.015,v.y*1.5)));
@@ -189,7 +189,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </main>
 
         {/* ABOUT */}
-        <section id="about" className="w-full px-6 py-20 bg-[#060a10]/90 border-t border-[#818cf8]/12">
+        <section id="about" className="w-full px-6 py-20 bg-[#060a10]/30 border-t border-[#818cf8]/12">
           <div className="max-w-6xl mx-auto">
             <span className="font-dm text-[10px] text-[#818cf8] tracking-widest uppercase block mb-2">01 — About</span>
             <h2 className="font-space text-3xl md:text-5xl font-bold text-white mb-12">Where <em className="text-[#818cf8] not-italic">biology</em> meets code</h2>
@@ -328,7 +328,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </section>
 
         {/* EXPERIENCE */}
-        <section id="experience" className="w-full px-6 py-20 bg-[#060a10]/90 border-t border-[#818cf8]/12">
+        <section id="experience" className="w-full px-6 py-20 bg-[#060a10]/30 border-t border-[#818cf8]/12">
           <div className="max-w-4xl mx-auto">
             <span className="font-dm text-[10px] text-[#818cf8] tracking-widest uppercase block mb-2">03 — Experience</span>
             <h2 className="font-space text-3xl md:text-5xl font-bold text-white mb-12">Where I've <em className="text-[#818cf8] not-italic">worked</em></h2>
@@ -347,7 +347,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </section>
 
         {/* PUBLICATIONS */}
-        <section id="publications" className="w-full px-6 py-20 border-t border-[#818cf8]/12 bg-[#020406]">
+        <section id="publications" className="w-full px-6 py-20 border-t border-[#818cf8]/12 bg-[#020406]/30">
           <div className="max-w-6xl mx-auto">
             <span className="font-dm text-[10px] text-[#818cf8] tracking-widest uppercase block mb-2">04 — Publications</span>
             <h2 className="font-space text-3xl md:text-5xl font-bold text-white mb-12">Peer-reviewed <em className="text-[#f472b6] not-italic">work</em></h2>
@@ -396,7 +396,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="w-full px-6 py-20 bg-[#060a10]/90 border-t border-[#818cf8]/12">
+        <section id="contact" className="w-full px-6 py-20 bg-[#060a10]/30 border-t border-[#818cf8]/12">
           <div className="max-w-6xl mx-auto">
             <span className="font-dm text-[10px] text-[#818cf8] tracking-widest uppercase block mb-2">05 — Contact</span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -455,7 +455,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </section>
 
         {/* FOOTER */}
-        <footer className="w-full py-8 px-6 border-t border-[#22d3a5]/12 flex flex-col md:flex-row justify-between items-center gap-4 text-center bg-[#020406]">
+        <footer className="w-full py-8 px-6 border-t border-[#22d3a5]/12 flex flex-col md:flex-row justify-between items-center gap-4 text-center bg-[#020406]/30">
           <span className="font-space text-sm font-bold text-white">{logo?.name}</span>
           <span className="text-[#3d4f66] text-xs">© 2026 — built at the frontier of biology &amp; code</span>
           <span className="font-dm text-[10px] text-[#8b9bb4] uppercase tracking-wider">Biotech × Bioinformatics</span>
