@@ -161,7 +161,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
             </p>
             <div className="flex gap-4 mb-16 flex-wrap">
               {resume && (
-                <button onClick={resume.onClick} className="btn-glow-blue px-6 py-3 rounded-lg text-xs font-dm uppercase tracking-wider">Download CV</button>
+                <button onClick={resume.onClick} className="btn-glow-blue px-6 py-3 rounded-lg text-xs font-dm uppercase tracking-wider">View CV</button>
               )}
               {ctaButtons?.primary && (
                 <button onClick={ctaButtons.primary.onClick} className="btn-outline px-6 py-3 rounded-lg text-xs font-dm uppercase tracking-wider">{ctaButtons.primary.label}</button>

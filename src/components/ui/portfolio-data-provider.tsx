@@ -14,15 +14,9 @@ const customPortfolioData: PortfolioPageProps = {
     { label: 'Contact', href: '#contact' },
   ],
   resume: {
-    label: 'Download CV',
+    label: 'View CV',
     onClick: () => {
-      const link = document.createElement('a');
-      link.href = '/CV.pdf';
-      link.target = '_blank';
-      link.download = 'Jayant_Kushwaha_CV.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.open(import.meta.env.BASE_URL + 'CV.pdf', '_blank');
     },
   },
   hero: {
