@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Mono:wght@300;400;500&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --void: #020406;
+  --void2: #060a10;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass2: rgba(255, 255, 255, 0.07);
+  --border: rgba(34, 211, 165, 0.12);
+  --border2: rgba(34, 211, 165, 0.3);
+  --bio: #22d3a5;
+  --bio2: #0ff4c8;
+  --plasma: #818cf8;
+  --helix: #f472b6;
+  --text: #e2e8f0;
+  --text2: #8b9bb4;
+  --text3: #3d4f66;
+}
+
+body {
+  background-color: var(--void);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* Font helpers */
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.font-dm {
+  font-family: 'DM Mono', monospace;
+}
+
+/* Background overlay grid/noise */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.3;
+}
+
+/* Glow effects & buttons */
+.btn-glow {
+  background: var(--bio);
+  color: #020406;
+  font-weight: 700;
+  box-shadow: 0 0 25px rgba(34, 211, 165, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-glow:hover {
+  background: var(--bio2);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 40px rgba(34, 211, 165, 0.5), 0 15px 30px rgba(34, 211, 165, 0.15);
+}
+
+.btn-glow-blue {
+  background: var(--plasma);
+  color: #020406;
+  font-weight: 700;
+  box-shadow: 0 0 25px rgba(129, 140, 248, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-glow-blue:hover {
+  background: #a5b4fc;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 40px rgba(129, 140, 248, 0.5), 0 15px 30px rgba(129, 140, 248, 0.15);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text2);
+  border: 1px solid var(--border2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-outline:hover {
+  color: var(--bio);
+  border-color: var(--bio);
+  background: rgba(34, 211, 165, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Custom premium classes */
+.glass-nav {
+  background: rgba(2, 4, 6, 0.6);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--border);
+}
+
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.glass-card:hover {
+  background: var(--glass2);
+  border-color: var(--border2);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(34, 211, 165, 0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--bio) 0%, var(--plasma) 55%, var(--helix) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 25px rgba(34, 211, 165, 0.1));
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+
+/* Timeline component styling */
+.timeline {
+  position: relative;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.tl-item:last-child {
+  margin-bottom: 0;
+}
+.tl-dot {
+  position: absolute;
+  left: -26px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--void);
+  border: 2px solid var(--bio);
+  box-shadow: 0 0 10px rgba(34, 211, 165, 0.5);
+  transition: all 0.3s;
+}
+.tl-dot.blue-dot {
+  border-color: var(--plasma);
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+}
+.tl-dot.green-dot {
+  border-color: var(--bio);
+  box-shadow: 0 0 10px rgba(34, 211, 165, 0.5);
+}
+.tl-item:hover .tl-dot.blue-dot {
+  background: var(--plasma);
+  box-shadow: 0 0 15px var(--plasma);
+}
+.tl-item:hover .tl-dot.green-dot {
+  background: var(--bio);
+  box-shadow: 0 0 15px var(--bio);
+}
+
+/* Terminal component styling */
+.term-card {
+  background: #020406;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: 'DM Mono', monospace;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+}
+
+.term-header {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.term-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.term-body {
+  padding: 16px;
+  font-size: 12px;
+}
+
+/* Blinking cursor animation */
+.blink {
+  animation: blink-anim 1s step-end infinite;
+}
+@keyframes blink-anim {
+  from, to { color: transparent }
+  50% { color: var(--bio) }
+}
+
+/* Pulse animation */
+.glow-pulse {
+  animation: glow-pulse-anim 2s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse-anim {
+  from { box-shadow: 0 0 6px var(--bio) }
+  to { box-shadow: 0 0 14px var(--bio) }
+}
+
+/* Pulse animation blue */
+.glow-pulse-blue {
+  animation: glow-pulse-blue-anim 2s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse-blue-anim {
+  from { box-shadow: 0 0 6px var(--plasma) }
+  to { box-shadow: 0 0 14px var(--plasma) }
+}
+
+/* DNA Helix Animation */
+@keyframes dna-rotate-a {
+  0%, 100% {
+    cx: 140px;
+    r: 3px;
+    opacity: 0.4;
+    fill: var(--plasma);
+  }
+  50% {
+    cx: 260px;
+    r: 6px;
+    opacity: 1;
+    fill: var(--bio);
+  }
+}
+
+@keyframes dna-rotate-b {
+  0%, 100% {
+    cx: 260px;
+    r: 6px;
+    opacity: 1;
+    fill: var(--bio);
+  }
+  50% {
+    cx: 140px;
+    r: 3px;
+    opacity: 0.4;
+    fill: var(--plasma);
+  }
+}
+
+@keyframes dna-rung-scale {
+  0%, 50%, 100% {
+    x1: 140px;
+    x2: 260px;
+    opacity: 0.8;
+  }
+  25%, 75% {
+    x1: 200px;
+    x2: 200px;
+    opacity: 0.2;
+  }
+}
+
+.dna-node-a {
+  animation: dna-rotate-a 3s ease-in-out infinite;
+}
+
+.dna-node-b {
+  animation: dna-rotate-b 3s ease-in-out infinite;
+}
+
+.dna-rung {
+  animation: dna-rung-scale 3s ease-in-out infinite;
+}
