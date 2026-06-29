@@ -82,12 +82,12 @@ const AuroraBackground: React.FC = () => {
                 float fbm(vec2 x) { float v=0.0;float a=0.3;vec2 shift=vec2(100);mat2 rot=mat2(cos(0.5),sin(0.5),-sin(0.5),cos(0.50));for(int i=0;i<NUM_OCTAVES;++i){v+=a*noise(x);x=rot*x*2.0+shift;a*=0.4;}return v;}
                 void main() {
                     vec2 p=((gl_FragCoord.xy)-iResolution.xy*0.5)/iResolution.y*mat2(5.0,-3.0,3.0,5.0);vec4 o=vec4(0.);float f=2.+fbm(p+vec2(iTime*4.,0.))*.5;
-                    vec2 sway = vec2(sin(iTime * 0.12) * 2.8, cos(iTime * 0.08) * 0.9);
+                    vec2 sway = vec2(1.5 + sin(iTime * 0.15) * 3.2, cos(iTime * 0.10) * 1.0);
                     for(float i=0.;i++<45.;){
-                        vec2 v=p+sway+cos(i*i+(iTime+p.x*.05)*.10+i*vec2(13.,11.))*8.5;
+                        vec2 v=p+sway+cos(i*i+(iTime+p.x*.05)*.12+i*vec2(13.,11.))*7.0;
                         float tailNoise=fbm(v+vec2(iTime*.5,i))*.3*(1.-(i/45.));
                         vec4 auroraColors=vec4(.1+.3*sin(i*.2+iTime*.4),.3+.5*cos(i*.3+iTime*.5),.7+.3*sin(i*.4+iTime*.3),1.);
-                        vec4 currentContribution=auroraColors*exp(sin(i*i+iTime*.8))/length(max(v,vec2(v.x*f*.015,v.y*1.5)));
+                        vec4 currentContribution=auroraColors*exp(sin(i*i+iTime*.8))/(length(v * vec2(f * 0.022, 1.3)) + 0.001);
                         float thinnessFactor=smoothstep(0.,1.,i/45.)*.6;
                         o+=currentContribution*(1.+tailNoise*.8)*thinnessFactor;
                     }
