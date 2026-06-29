@@ -5,8 +5,11 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Portfolio_New/',
+  base: '/Portfolio/',
   plugins: [react(), tailwindcss()],
+  server: {
+    host: true,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
